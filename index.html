@@ -3,76 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваше Имя — Контакты</title>
+    <title>Мустафин Айнур · Генеральный директор AMIT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=TikTok+Sans:opsz,wght@12..36,400;12..36,500;12..36,700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #0f161c;
+            --white: #fbf5f5;
+            --blue: #b5d2e7;
+            --light-blue: #d8e4ee;
+            --deep-blue: #345169;
+            --grey: #6D7E8D;
+            --font-head: "TikTok Sans", "Segoe UI", system-ui, sans-serif;
+            --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body { height: 100%; }
+
         body {
             margin: 0;
-            padding: 0;
-            background: #111;
-            color: #fff;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            text-align: center;
+            min-height: 100dvh;
+            padding: 32px 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Мягкое голубое свечение в фоне — как акценты на amit.partners */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(620px 420px at 50% -10%, rgba(181,210,231,0.18), transparent 70%),
+                radial-gradient(700px 500px at 110% 100%, rgba(52,81,105,0.35), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .card {
-            max-width: 400px;
-            padding: 40px 20px;
-            margin: 20px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(216,228,238,0.10);
+            border-radius: 28px;
+            padding: 40px 32px 32px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 30px 80px -40px rgba(0,0,0,0.9);
+        }
+
+        .brand {
+            height: 26px;
+            width: auto;
+            opacity: 0.95;
+            margin-bottom: 36px;
+        }
+
+        .avatar-wrap {
+            position: relative;
+            width: 116px;
+            height: 116px;
+            margin: 0 auto 22px;
+        }
+        .avatar-wrap::after {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg, var(--blue), var(--deep-blue), var(--blue));
+            z-index: -1;
+            filter: blur(2px);
+            opacity: 0.7;
         }
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 116px;
+            height: 116px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #fff;
-            margin-bottom: 20px;
+            object-position: 50% 14%; /* кадрируем по лицу (фото ростовое) */
+            border: 2px solid rgba(216,228,238,0.25);
+            background: #1a2630;
+            display: block;
         }
+
         h1 {
-            font-size: 1.8em;
+            font-family: var(--font-head);
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 6px;
+            line-height: 1.15;
+        }
+
+        .role {
+            color: var(--blue);
+            font-size: 0.95rem;
+            font-weight: 500;
             margin: 0;
         }
-        p {
-            color: #aaa;
-            margin: 10px 0 30px;
+        .company {
+            color: var(--grey);
+            font-size: 0.85rem;
+            margin: 4px 0 0;
         }
+
+        .links {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .button {
-            display: block;
-            background: #222;
-            color: #fff;
-            padding: 15px 20px;
-            margin: 10px 0;
-            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(216,228,238,0.05);
+            color: var(--white);
+            padding: 15px 18px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 500;
-            border: 1px solid #333;
-            transition: background 0.2s;
+            font-size: 0.97rem;
+            border: 1px solid rgba(216,228,238,0.10);
+            transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
         }
         .button:hover {
-            background: #333;
+            background: rgba(181,210,231,0.12);
+            border-color: rgba(181,210,231,0.35);
+            transform: translateY(-2px);
         }
+        .button .ico {
+            flex: 0 0 22px;
+            width: 22px;
+            height: 22px;
+            color: var(--blue);
+        }
+        .button .label { flex: 1; text-align: left; }
+        .button .arrow {
+            color: var(--grey);
+            transition: transform 0.18s ease, color 0.18s ease;
+        }
+        .button:hover .arrow {
+            color: var(--blue);
+            transform: translateX(3px);
+        }
+
         .footer {
-            margin-top: 40px;
-            font-size: 0.8em;
-            color: #555;
+            margin-top: 34px;
+            font-size: 0.78rem;
+            color: var(--grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .footer a { color: var(--blue); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 380px) {
+            .card { padding: 32px 22px 26px; }
+            h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <!-- Замените ссылку на свою фотографию или оставьте заглушку -->
-        <img class="avatar" src="https://via.placeholder.com/100" alt="Ваше фото">
+    <main class="card">
+        <!-- Логотип AMIT (вордмарк) -->
+        <svg class="brand" viewBox="0 0 761 161" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AMIT">
+            <path d="M195.515 112.164H176.754V54.9381C176.754 42.7706 173.598 32.5226 167.374 24.5085C161.171 16.2992 151.779 10.1287 139.525 6.17051C127.444 2.08214 112.164 0 94.1409 0C77.2777 0 62.5184 1.87609 50.2858 5.56322C37.8689 9.10936 27.957 14.5316 20.8214 21.6673C13.5773 28.7053 9.19611 37.4785 7.78633 47.7265L7.45015 50.1882H47.7265L48.1061 48.4856C49.4942 42.2284 53.7994 37.6412 61.3038 34.4204C69.0576 30.9176 79.9129 29.1391 93.577 29.1391C102.751 29.1391 110.7 30.0826 117.261 31.9587C123.573 33.5853 128.388 36.0145 131.598 39.2136C134.829 42.2718 136.402 45.9047 136.402 50.3292V50.6112C136.402 53.6259 135.426 55.9141 133.43 57.595C131.468 59.2325 128.16 60.3278 123.627 60.8484L57.8769 68.0599C45.5902 69.4263 34.9951 72.1049 26.3846 76.0198C17.7849 79.8153 11.1698 85.0207 6.74526 91.4515C2.26649 97.7629 0 105.365 0 114.041C0 128.55 5.73673 140.1 17.0692 148.396C28.3475 156.312 44.0936 160.325 63.8739 160.325C73.3629 160.325 85.1833 160.357 99.5089 155C127.282 144.611 138.939 123.584 139.395 122.705C140.143 121.241 140.859 119.701 140.859 119.701C141.39 118.573 141.867 117.522 141.998 117.109H150.749L136.087 157.418H179.075L195.548 112.143L195.515 112.164ZM136.38 85.8015C136.38 91.9178 134.829 97.7629 131.771 103.174C128.67 108.466 124.31 113.184 118.812 117.218C113.26 121.285 106.677 124.581 99.2703 126.989C92.0154 129.223 83.9904 130.351 75.4016 130.351C64.1234 130.351 55.4695 128.605 49.7219 125.189C44.4081 121.924 41.8163 117.153 41.8163 110.603C41.8163 105.853 43.3562 102.242 46.4794 99.6065C49.993 96.7978 55.4478 94.9109 62.7136 94.0108L115.179 87.092C123.085 86.1268 129.364 85.1508 133.918 84.1531C134.753 83.9362 135.578 83.6977 136.391 83.4482V85.8015H136.38Z" fill="#FBF5F5"/>
+            <path d="M347.068 4.85837L309.492 107.989L271.959 4.85837H206.99V157.44H247.364V30.1477L293.703 157.44H325.325L371.577 30.2561V157.44H411.994V4.85837H347.068Z" fill="#FBF5F5"/>
+            <path d="M528.299 4.85837L477.612 144.069V4.85837H437.238V157.44H474.934H477.612H506.556L553.036 30.2561V157.44H593.225V4.85837H528.299Z" fill="#FBF5F5"/>
+            <path d="M761 4.85837H674.157H633.784H616.454L604.243 38.4112H659.192H663.508V157.44H703.882V38.4112H761V4.85837Z" fill="#FBF5F5"/>
+        </svg>
 
-        <h1>Ваше Имя Фамилия</h1>
-        <p>Должность или слоган</p>
+        <div class="avatar-wrap">
+            <!-- Замените src на свою фотографию -->
+            <img class="avatar" src="img/photo.jpg" alt="Мустафин Айнур">
+        </div>
 
-        <a class="button" href="https://t.me/yourusername">✈️ Telegram</a>
-        <a class="button" href="https://wa.me/79031234567">💬 WhatsApp</a>
-        <a class="button" href="mailto:you@example.com">📧 Email</a>
+        <h1>Мустафин Айнур<br>Зиннатуллович</h1>
+        <p class="role">Генеральный директор</p>
+        <p class="company">AMIT — промышленная цифровизация</p>
 
-        <div class="footer">© 2026 — Приложи NFC ещё раз :)</div>
-    </div>
+        <nav class="links">
+            <a class="button" href="https://t.me/Mustafin19">
+                <svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.6 18.7 19.86c-.24 1.08-.88 1.34-1.78.84l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.99.48l.35-5 9.1-8.22c.4-.35-.09-.55-.61-.2L4.43 13.13l-4.85-1.52c-1.05-.33-1.07-1.05.22-1.55L20.6 3.06c.88-.33 1.65.2 1.34 1.54z" transform="translate(1)"/></svg>
+                <span class="label">Telegram&nbsp;·&nbsp;@Mustafin19</span>
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+
+            <a class="button" href="https://amit.partners/">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="label">amit.partners</span>
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+        </nav>
+
+        <div class="footer">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8.32a7.43 7.43 0 0 1 0 7.36M9.46 6.21a11.76 11.76 0 0 1 0 11.58M12.91 4.1a15.91 15.91 0 0 1 0 15.8M16.37 2a20.16 20.16 0 0 1 0 20"/></svg>
+            <span>Приложите NFC ещё раз · <a href="https://amit.partners/">amit.partners</a></span>
+        </div>
+    </main>
 </body>
 </html>
